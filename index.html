@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Atelier Teinte 3D</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Saira+Semi+Condensed:wght@500;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap">
+<link rel="stylesheet" href="css/style.css">
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+    "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+  }
+}
+</script>
+</head>
+<body>
+<div class="app">
+  <section class="stage" aria-label="Aperçu 3D du véhicule">
+    <header class="stage-head">
+      <div>
+        <p class="eyebrow">Aperçu en direct</p>
+        <h1 id="vehicle-name">Peugeot 3008</h1>
+        <p id="vehicle-meta" class="meta">SUV</p>
+      </div>
+      <label class="toggle"><input type="checkbox" id="autorotate"> Rotation auto</label>
+    </header>
+    <div id="viewport" class="viewport"></div>
+    <nav class="views" aria-label="Angle de vue">
+      <button type="button" data-view="rear34" aria-pressed="true">3/4 arrière</button>
+      <button type="button" data-view="front34" aria-pressed="false">3/4 avant</button>
+      <button type="button" data-view="side" aria-pressed="false">Profil</button>
+      <button type="button" data-view="rear" aria-pressed="false">Arrière</button>
+    </nav>
+    <p class="hint">Glissez pour tourner autour du véhicule, pincez ou molette pour zoomer.</p>
+  </section>
+
+  <aside class="panel">
+    <div class="block">
+      <h2><span class="step">1</span> Véhicule</h2>
+      <div class="fields">
+        <label class="field" for="brand">Marque
+          <select id="brand"></select>
+        </label>
+        <label class="field" for="model">Modèle
+          <select id="model"></select>
+        </label>
+      </div>
+    </div>
+
+    <div class="block">
+      <h2><span class="step">2</span> Teinte des vitres</h2>
+      <p class="note">Le pourcentage indique la lumière qui traverse la vitre (TLV). 5 % est le plus foncé.</p>
+
+      <div class="zone">
+        <div class="zone-head">
+          <h3>Vitres avant</h3>
+          <span class="zone-value" id="tint-front-value">Origine</span>
+        </div>
+        <p class="zone-sub">Vitres des portières conducteur et passager</p>
+        <div class="tints" id="tints-front" role="group" aria-label="Teinte des vitres avant"></div>
+        <p class="legal" id="legal" hidden>En France, les vitres avant doivent laisser passer au moins 70 % de la lumière, sauf dérogation médicale. Ce film est destiné à un usage hors voie publique ou avec dérogation.</p>
+      </div>
+
+      <div class="zone">
+        <div class="zone-head">
+          <h3>3/4 arrière</h3>
+          <span class="zone-value" id="tint-rear-value">15 %</span>
+        </div>
+        <p class="zone-sub">Vitres arrière, custodes et lunette arrière</p>
+        <div class="tints" id="tints-rear" role="group" aria-label="Teinte des vitres 3/4 arrière"></div>
+      </div>
+    </div>
+
+    <div class="block">
+      <h2><span class="step">3</span> Couleur de carrosserie</h2>
+      <div class="paints" id="paints" role="group" aria-label="Couleur de carrosserie"></div>
+    </div>
+
+    <div class="block summary">
+      <h2>Récapitulatif</h2>
+      <dl>
+        <div><dt>Vitres avant</dt><dd id="sum-front">—</dd></div>
+        <div><dt>3/4 arrière</dt><dd id="sum-rear">—</dd></div>
+        <div><dt>Carrosserie</dt><dd id="sum-paint">—</dd></div>
+      </dl>
+      <button type="button" class="ghost" id="reset">Retirer toutes les teintes</button>
+      <p class="disclaimer">Modèle 3D indicatif : la silhouette est générée d’après le type de carrosserie et les dimensions du véhicule.</p>
+    </div>
+  </aside>
+</div>
+<script type="module" src="js/app.js"></script>
+</body>
+</html>
